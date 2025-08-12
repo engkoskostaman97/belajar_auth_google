@@ -47,15 +47,17 @@ onMounted(() => {
 
 const login = () => {
   googleTokenLogin().then((response) => {
-
     //set state accessToken
     accessToken.value = response.access_token;
 
     //store accessToken to localStorage
     localStorage.setItem('accessToken', accessToken.value);
 
-  })
-}
+    //langsung fetch profile tanpa nunggu reload
+    fetchUserProfile(accessToken.value);
+  });
+};
+
 
 const handleLogout = () => {
 
